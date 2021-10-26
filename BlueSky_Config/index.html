@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>BlueSKY Configuration Files</title>
+    <link rel="stylesheet" href="./index.css">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <header>
+        <!-- container -->
+        <div class="container">
+            <div class="pageTitle">
+                <h1>Configure File</h1>
+            </div>
+        </div>
+        <!-- /container -->
+
+    </header>
+    <h2>Fuelbeds</h2>
+    <ul>
+        <li>FCCS Version<br>
+            <select id="fccs_version">
+                <option value=1>1</option>
+                <option value=2>2</option>
+              </select>
+        </li>
+    </ul>
+    <h2>Ecoregion</h2>
+    <ul>
+        <li>Default Ecoregion<br>
+            <select id="ecoregion_default">
+                <option value="western">western</option>
+                <option value="southern">southern</option>
+                <option value="boreal">boreal</option>
+              </select>
+        </li>
+    </ul>
+    <h2>Consumption</h2>
+    <ul>
+        <li>
+            <label for="slope">Slope:</label>
+            <input type="text" name="slope" placeholder="5, from 1 to 100 %" id="slope"><br><br>
+        </li>
+        <li>
+            <label for="windspeed">Wind Speed:</label>
+            <input type="text" name="windspeed" placeholder="6; 0 to 35 m/s" id="windspeed"><br><br>
+        </li>
+        <li>
+            <label for="days_since_rain">Days Since Rain:</label>
+            <input type="text" name="days_since_rain" placeholder="10" id="days_since_rain"><br><br>
+        </li>
+        <li>
+            Moisture
+            <ul>
+                <li>
+                    <label for="fuel_moisture_10hr_pct">Fuel Moisture 10hr pct:</label>
+                    <input type="text" name="fuel_moisture_10hr_pct" placeholder="50" id="fuel_moisture_10hr_pct"><br><br>
+                </li>
+                <li>
+                    <label for="fuel_moisture_1000hr_pct">Fuel Moisture 1000hr pct:</label>
+                    <input type="text" name="fuel_moisture_1000hr_pct" placeholder="30" id="fuel_moisture_1000hr_pct"><br><br>
+                </li>
+                <li>
+                    <label for="fuel_moisture_duff_pct">Fuel Moisture Duff pct:</label>
+                    <input type="text" name="fuel_moisture_duff_pct" placeholder="75" id="fuel_moisture_duff_pct"><br><br>
+                </li>
+                <li>
+                    <label for="fuel_moisture_litter_pct">Fuel Moisture Litter pct:</label>
+                    <input type="text" name="fuel_moisture_litter_pct" placeholder="16" id="fuel_moisture_litter_pct"><br><br>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <label for="canopy_consumption_pct">Canopy Consumption pct:</label>
+            <input type="text" name="canopy_consumption_pct" placeholder="0" id="canopy_consumption_pct"><br><br>
+        </li>
+        <li>
+            <label for="shrub_blackened_pct">Shrub Blackened pct:</label>
+            <input type="text" name="shrub_blackened_pct" placeholder="50" id="shrub_blackened_pct"><br><br>
+        </li>
+        <li>
+            <label for="pile_blackened_pct">Pile Blackened pct:</label>
+            <input type="text" name="pile_blackened_pct" placeholder="0" id="pile_blackened_pct"><br><br>
+        </li>
+
+    </ul>
+    <h2>Emissions</h2>
+    <ul>
+        <li>Emission Model<br>
+            <select id="emission_model">
+                <option value="feps">feps</option>
+                <option value="consume">consume</option>
+                <option value="prichard-oneill">prichard-oneill</option>
+              </select>
+        </li><br>
+        <li>
+            <label for="species">Species (Optional):</label>
+            <input type="text" name="species" placeholder="eg: PM2.5, VOC, CO, CO2" id="species"><br><br>
+        </li>
+    </ul>
+    <h2>Timeprofile</h2>
+    <ul>
+        <li>Model for Timeprofile<br>
+            <select id="timeprofile_model">
+                <option value=1>default</option>
+                <option value=2>ubc-bsf-feps</option>
+            </select><br><br>
+            <ul id="ubc-bsf-feps_settings">
+                <li>
+                    <label for="interpolation_type">Interpolation Type:</label>
+                    <input type="text" name="interpolation_type" placeholder="1" id="interpolation_type"><br><br>
+                </li>
+                <li>
+                    Normalize:
+                    <select id="normalize">
+                        <option value=1>true</option>
+                        <option value=2>false</option>
+                      </select>
+                </li>
+            </ul>
+            <div id="default_settings">
+                Hourly Fractions
+                <ul>
+                    <li>
+                        <!-- area_fraction, flaming, smoldering, residual -->
+                        <label for="area_fraction">Area Fractions:</label>
+                        <input type="text" name="area_fraction" placeholder="[24-hour fractions or span of the activity window]" id="area_fraction"><br><br>
+                    </li>
+                    <li>
+                        <!-- area_fraction, flaming, smoldering, residual -->
+                        <label for="flaming">Flaming Fractions:</label>
+                        <input type="text" name="flaming" placeholder="[24-hour fractions or span of the activity window]" id="flaming"><br><br>
+                    </li>
+                    <li>
+                        <!-- area_fraction, flaming, smoldering, residual -->
+                        <label for="smoldering">Smoldering Fractions:</label>
+                        <input type="text" name="smoldering" placeholder="[24-hour fractions or span of the activity window]" id="smoldering"><br><br>
+                    </li>
+                    <li>
+                        <!-- area_fraction, flaming, smoldering, residual -->
+                        <label for="residual">Residual Fractions:</label>
+                        <input type="text" name="residual" placeholder="[24-hour fractions or span of the activity window]" id="residual"><br><br>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <h2>Plumerise</h2>
+    <ul>
+
+        <li>Model for Plumerise<br>
+            <select id="plumerise_model">
+                    <option value=1>feps</option>
+                    <option value=2>sev</option>
+                </select>
+            <ul id="feps">
+                <li>
+                    Plume top Behavior
+                    <select id="plume_top_behavior">
+                        <option value=1>auto</option>
+                        <option value=2>FEPS</option>
+                        <option value=3>Briggs</option>
+                    </select>
+                    <!-- <label for="plume_top_behavior">Plume top behavior:</label>
+                    <input type="text" name="plume_top_behavior" placeholder="auto" id="plume_top_behavior"><br><br> -->
+                </li>
+            </ul>
+            <ul id="sev">
+                <li>
+                    <label for="alpha">alpha:</label>
+                    <input type="text" name="alpha" placeholder="0.24" id="alpha"><br><br>
+                </li>
+                <li>
+                    <label for="beta">beta:</label>
+                    <input type="text" name="beta" placeholder="170" id="beta"><br><br>
+                </li>
+                <li>
+                    <label for="ref_power">ref power:</label>
+                    <input type="text" name="ref_power" placeholder="1e6" id="ref_power"><br><br>
+                </li>
+                <li>
+                    <label for="gamma">gamma:</label>
+                    <input type="text" name="gamma" placeholder="0.35" id="gamma"><br><br>
+                </li>
+                <li>
+                    <label for="delta">delta:</label>
+                    <input type="text" name="delta" placeholder="0.6" id="delta"><br><br>
+                </li>
+                <li>
+                    <label for="ref_n">ref n:</label>
+                    <input type="text" name="ref_n" placeholder="2.5e-4" id="ref_n"><br><br>
+                </li>
+                <li>
+                    <label for="gravity">gravity:</label>
+                    <input type="text" name="gravity" placeholder="9.8" id="gravity"><br><br>
+                </li>
+                <li>
+                    <label for="plume_bottom_over_top">plume bottom over top:</label>
+                    <input type="text" name="plume_bottom_over_top" placeholder="0.5" id="plume_bottom_over_top"><br><br>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+
+    <h2>Configuration File</h2>
+    <button id="btn">Generate</button>
+    <script type="text/javascript" src="./Data/input data/default_config.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+    <div id="configuration"></div>
+    <div id="copy_btn"></div>
+</body>
+
+</html>
