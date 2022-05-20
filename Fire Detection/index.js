@@ -3,12 +3,14 @@ document.getElementById("btn").addEventListener('click', function(params) {
     // console.log(timeZone);
     var threshold = document.getElementById("Threshold").value;
     var siteName = document.getElementById("SiteName").value;
-    var content = plotConc(siteName, timeZone, threshold)
+    var startTime = document.getElementById("StartTime").value;
+    var endTime = document.getElementById("EndTime").value;
+    var content = plotConc(siteName, timeZone, threshold, startTime, endTime)
         // addTable();
         // Table.innerHTML += content
 })
 
-function plotConc(fileName = "1031", timeZone = 0, threshold) {
+function plotConc(fileName = "1031", timeZone = 0, threshold, startTime, endTime) {
     console.log(threshold);
     var detectDate = []
     var detectFireDate = []
@@ -31,7 +33,7 @@ function plotConc(fileName = "1031", timeZone = 0, threshold) {
         .text("PM2.5 Concentration");
 
     // fetch data
-    d3.dsv(",", "./Data/" + fileName + ".csv", function(d) {
+    d3.dsv(",", "/Users/zongrunli/Downloads/Porkking.github.io-main/Fire Detection/Data/" + fileName + ".csv", function(d) {
         return {
             date: new Date(d["Date/Time/GMT"]),
             conc: +d["ConcHr"] * 1000
@@ -42,7 +44,10 @@ function plotConc(fileName = "1031", timeZone = 0, threshold) {
         for (let i = 0; i < data.length; i++) {
             data[i].date.setHours(data[i].date.getHours() - timeZone);
         }
-
+        // Filter the data by date
+        data = data.filter(item => ((item.date >= startTime) & (item.date <= startTime)))
+        console.log(data);
+        alert(valid_idx);
         for (let i = 0; i < data.length; i++) {
             if (data[i].conc >= threshold) {
                 var dateStr = prefixInteger((data[i].date.getMonth() + 1), 2) + "-" + prefixInteger(data[i].date.getDate(), 2) + "-" + data[i].date.getFullYear()
