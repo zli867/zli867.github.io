@@ -45,7 +45,7 @@ function plotConc(fileName = "1031", timeZone = 0, threshold, startTime, endTime
             data[i].date.setHours(data[i].date.getHours() - timeZone);
         }
         // Filter the data by date
-        data = data.filter(item => ((item.date >= startTime) & (item.date <= startTime)))
+        data = data.filter(item => ((item.date >= startTime) & (item.date <= endTime)))
         console.log(data);
         alert(valid_idx);
         for (let i = 0; i < data.length; i++) {
