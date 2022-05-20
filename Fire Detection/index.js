@@ -187,12 +187,13 @@ function plotConc(fileName = "1031", timeZone = 0, threshold, startTime, endTime
             });
         svg.call(tip);
 
+        // Define day time (9:00-6:00)
         svg.selectAll("circles")
             .data(data)
             .enter()
             .append("circle")
             .attr("fill", function(d) {
-                if (d.conc >= threshold) {
+                if (d.date.getHours() >= 9 & d.date.getHours() <= 18) {
                     return "red"
                 } else {
                     return "black"
