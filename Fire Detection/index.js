@@ -45,13 +45,7 @@ function plotConc(fileName = "1031", timeZone = 0, threshold, startTime, endTime
             data[i].date.setHours(data[i].date.getHours() - timeZone);
         }
         // Filter the data by date
-        for (let index = 0; index < data.length; index++) {
-            console.log(data[index].date);
-            console.log(startTime);
-            console.log(endTime)
-        }
         data = data.filter(item => ((item.date >= startTime) & (item.date <= endTime)))
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
             if (data[i].conc >= threshold) {
                 var dateStr = prefixInteger((data[i].date.getMonth() + 1), 2) + "-" + prefixInteger(data[i].date.getDate(), 2) + "-" + data[i].date.getFullYear()
