@@ -34,16 +34,18 @@ function plotConc(fileName = "1031", timeZone = 0, threshold, startTime, endTime
 
     // fetch data
     d3.dsv(",", "./Data/" + fileName + ".csv", function(d) {
+        tmp_date = new Date(d["Date/Time/GMT"])
+        tmp_date.date.setHours(tmp_date.date.getHours() - timeZone);
         return {
-            date: new Date(d["Date/Time/GMT"]),
+            date: tmp_date,
             conc: +d["ConcHr"] * 1000
         };
     }).then(function(data) {
         // console.log(data);
         // console.log(data[0].date)
-        for (let i = 0; i < data.length; i++) {
-            data[i].date.setHours(data[i].date.getHours() - timeZone);
-        }
+//         for (let i = 0; i < data.length; i++) {
+//             data[i].date.setHours(data[i].date.getHours() - timeZone);
+//         }
         // Filter the data by date
         data = data.filter(item => ((item.date >= startTime) & (item.date <= endTime)))
         for (let i = 0; i < data.length; i++) {
