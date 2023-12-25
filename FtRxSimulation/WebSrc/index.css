@@ -1,0 +1,27 @@
+.image {
+    object-fit: cover;
+    /* This property ensures the image maintains its aspect ratio and covers the entire container */
+}
+
+.center-container {
+    text-align: center;
+}
+
+.Stewart {
+    display: none;
+}
+
+.sideByside {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.flex {
+    display: flex;
+}
+
+#main-content {
+    display: none;
+}
