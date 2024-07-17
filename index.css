@@ -1,0 +1,17 @@
+.icon {
+    font-size: 24px;
+    /* Adjust the size */
+    margin-right: 8px;
+    /* Add some space between the icon and the text */
+}
+
+.scholar-icon {
+    width: 27px;
+    /* Adjust the size */
+    height: 27px;
+    /* Ensure the height is consistent */
+    margin-right: 9px;
+    /* Add some space between the icon and the text */
+    vertical-align: middle;
+    /* Align icon with the text */
+}

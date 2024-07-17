@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+    Plain-Academic by Vasilios Mavroudis
+    Released under the Simplified BSD License/FreeBSD (2-clause) License.
+    https://github.com/mavroudisv/plain-academic
+-->
+
+<html lang="en">
+
+<head>
+    <title>Zongrun's Homepage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#">CV</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Entries Column -->
+            <div class="col-md-8" style="height: 100vh;">
+
+                <!-- Main Image -->
+                <img class="img-responsive" src="photo.jpg" alt=""><br>
+                <div class="tip" markdown="1">Have **fun!**</div>
+                <div style="margin-top:3%; text-align:justify;">
+                    Hello, I am Zongrun. I am currently a Georgia Tech PhD student in [LAMDA(λ) : Laboratory for Atmospheric Modeling, Diagnostics and Analysis](https://russellgroup.ce.gatech.edu/) advised by [M. Talat Odman](https://odman.ce.gatech.edu/) and [Ted Russell](https://ce.gatech.edu/directory/person/armistead-g-russell).
+                    My PhD research topics including: * Coupling fire-behavior model with chemical transport model. * Estimation of prescribed fire emissions from remote sensing datasets. * Health impacts of prescribed fires. * Tradeoffs between wildfires
+                    and prescribed fires. * Deep learning driven prescribed fire forecast system.
+                </div>
+            </div>
+
+            <!-- Contact Info on the Sidebar -->
+            <div class="col-md-4">
+                <div style="font-family: 'Oswald', sans-serif; font-size: 32px;"><b>Zongrun Li</b></div><br>
+                <p><b>zli867 at gatech.edu</b><br>
+                    <p>Georgia Tech
+                        <br> Atlanta <br>
+                        <br>
+                    </p>
+            </div>
+
+
+            <!-- Links on the Sidebar -->
+            <div class="col-md-4" style="margin-top:2%">
+                <i class="fab fa-fw fa-researchgate icon-pad-right icon" aria-hidden="true"></i><a href="{{ author.researchgate }}">ResearchGate</a>
+                <br>
+                <i class="fab fa-fw fa-github icon-pad-right icon" aria-hidden="true"></i><a href="https://github.com/{{ author.github }}">Github</a>
+                <br>
+                <i class="fab fa-fw fa-linkedin icon-pad-right icon" aria-hidden="true"></i><a href="https://github.com/{{ author.github }}">Linkedin</a>
+                <br>
+                <img src="./img/icons8-google-scholar-48.png" alt="Google Scholar" class="scholar-icon"><a href="{{ author.googlescholar }}">Google Scholar</a>
+            </div>
+
+
+            <!-- Publications -->
+            <div class="col-md-8" style="height: 100vh;">
+                <h2 id="publications">Publications</h2>
+                <script src="https://bibbase.org/show?bib=https://bibbase.github.io/pubs_without_questionmarks.bib&jsonp=1"></script>
+
+                <strong>Peer-reviewed</strong><br/>
+                <ul>
+                    <li class="paper" words="add, your, keywords, here"><a href="#">Full title</a> Names of the authors</li>
+                </ul>
+
+                <strong>Technical Reports</strong><br/>
+                <ul>
+                    <li class="paper" words="add, your, keywords, here"><a href="#">Full title</a>. Details of the report</li>
+                </ul>
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Other people may like it too! -->
+    <a style="color:#b5bec9;font-size:0.8em; float:right;" href="https://github.com/mavroudisv/plain-academic">Plain Academic</a>
+
+</body>
+
+</html>
