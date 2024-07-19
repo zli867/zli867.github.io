@@ -1,0 +1,32 @@
+{
+    "fires": [
+        {
+            "id": "SF11C14225236095807750",
+            "meta":{
+                "vsmoke": {
+                    "wd": 30,
+                    "ws": 10
+                }
+            },
+            "activity": [
+                {
+                    "active_areas": [
+                        {
+                            "start": "2014-08-29T17:00:00",
+                            "end": "2014-08-30T17:00:00",
+                            "ecoregion": "western",
+                            "utc_offset": "-07:00",
+                            "specified_points": [
+                                {
+                                    "lat": 47.4316976,
+                                    "lng": -121.3990506,
+                                    "area": 200
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

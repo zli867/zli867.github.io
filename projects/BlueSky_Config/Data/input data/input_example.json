@@ -1,0 +1,27 @@
+{
+    "fires": [{
+        "id": "SF11C14225236095807750",
+        "event_of": {
+            "name": "Natural Fire near Snoqualmie Pass, WA",
+            "id": "SF11E826544"
+        },
+        "type": "rx",
+        "fuel_type": "natural",
+        "activity": [{
+            "name": "First day",
+            "active_areas": [{
+                "start": "2015-08-04T17:00:00",
+                "end": "2015-08-05T17:00:00",
+                "country": "USA",
+                "state": "GA",
+                "ecoregion": "western",
+                "specified_points": [{
+                    "name": "HMW-32434",
+                    "lat": 32.388658623754,
+                    "lng": -84.8298781882612,
+                    "area": 120
+                }]
+            }]
+        }]
+    }]
+}

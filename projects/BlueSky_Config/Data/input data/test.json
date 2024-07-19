@@ -1,0 +1,36 @@
+{
+    "fires": [{
+        "id": "SF11C14225236095807750",
+        "event_of": {
+            "name": "Natural Fire near Snoqualmie Pass, WA",
+            "id": "SF11E826544"
+        },
+        "type": "rx",
+        "fuel_type": "natural",
+        "activity": [{
+            "name": "First day",
+            "active_areas": [{
+                "utc_offset": "-04:00",
+                "start": "2021-04-03T10:00:00",
+                "end": "2021-04-03T17:00:00",
+                "country": "USA",
+                "state": "GA",
+                "ecoregion": "western",
+                "specified_points": [{
+                    "name": "HMW-32434",
+                    "lat": 32.388658623754,
+                    "lng": -84.8298781882612,
+                    "area": 120,
+                    "utc_offset": "-04:00"
+                }]
+            }]
+        }]
+    }],
+    "met": {
+        "files": [{
+            "file": "/home/zongrun/pnwairfire-bluesky/input/met/arw20210403",
+            "first_hour": "2021-04-03T00:00:00",
+            "last_hour": "2021-04-03T23:00:00"
+        }]
+    }
+}

@@ -1,0 +1,324 @@
+{
+    "config": {
+        "skip_failed_fires": false,
+        "skip_failed_sources": false,
+        "load": {
+            "sources": [{
+                "name": "firespider",
+                "format": "csv",
+                "type": "file",
+                "wait": {
+                    "strategy": "fixed",
+                    "time": 0.1,
+                    "max_attempts": 10
+                },
+                "saved_copy_events_file": "save copy of loaded fire events data to file",
+                "start": "used to filter fires based on time",
+                "end": "used to filter fires based on time",
+                "skip_failures": "skip fires that result in exception during load"
+            }]
+        },
+        "merge": {
+            "skip_failures": false
+        },
+        "filter": {
+            "skip_failures": false,
+            "area": {
+                "min": "min area threshold",
+                "max": "max area threshold",
+                "location": {
+                    "boundary": {
+                        "sw": {
+                            "lat": 32.7,
+                            "lng": -85.3
+                        },
+                        "ne": {
+                            "lat": 32.7,
+                            "lng": -85.3
+                        }
+                    }
+                }
+            },
+            "time": {
+                "start": "note that the specified time is assumed to be UTC unless it ends with 'L'",
+                "end": "in which case it is compared against the activity 'start' times unadjusted for utc offset"
+            }
+
+        },
+        "fuelbeds": {
+            "fccs_version": "1 or 2",
+            "ignored_percent_resampling_threshold": "percentage of ignored fuelbeds which should trigger resampling in larger area",
+            "ignored_fuelbeds": "fuelbeds to ignore; default ['0', '900']",
+            "no_sampling": "don't sample surrounding area for Point and MultiPoint geometries",
+            "fccs_fuelload_file": "NetCDF",
+            "fccs_fuelload_param": "name of variable in NetCDF file",
+            "fccs_fuelload_grid_resolution": "length of grid cells in km",
+            "truncation_percentage_threshold": "use first N largest fuelbeds making up this percentage for a location; default 90.0",
+            "truncation_count_threshold": "use only up to this many fuelbeds for a location; default 5",
+            "total_pct_threshold": "Allow summed fuel percentages to be this much off of 100%; default is 0.5% (i.e. between 99.5% and 100.5%)"
+        },
+        "ecoregion": {
+            "lookup_implementation": "ogr",
+            "skip_failures": true,
+            "default": "default value for ecoregion which cannot be retrived, eg: 'western', 'southern', 'boreal'"
+        },
+        "consumption": {
+            "fuel_loadings": "custom, fuelbed-specific fuel loadings",
+            "consume_settings": {
+                "activity": {
+                    "slope": "percent, from 1 to 100; default 5",
+                    "windspeed": "default 6; valid values: 0 to 35",
+                    "days_since_rain": "default 10",
+                    "fuel_moisture_10hr_pct": 50,
+                    "length_of_ignition": "in minutes; default 120; used if `ignition_start` and `ignition_end` aren't specified for a fire",
+                    "fm_type": "MEAS-Th"
+                },
+                "all": {
+                    "fuel_moisture_1000hr_pct": 30,
+                    "fuel_moisture_duff_pct": 75,
+                    "fuel_moisture_litter_pct": 16,
+                    "canopy_consumption_pct": 0,
+                    "shrub_blackened_pct": 50,
+                    "pile_blackened_pct": 0
+                }
+            }
+        },
+        "emissions": {
+            "model": "'prichard-oneill' (which replaced 'urbanski'), 'feps', or 'consume'; default 'feps'",
+            "species": ["PM2.5", "VOC", "CO", "CO2"],
+            "include_emissions_details": false
+        },
+        "findmetdata": {
+            "met_root_dir": "required met root directory",
+            "time_window": {
+                "first_hour": "if fire activity data isn't defined",
+                "last_hour": "if fire activity data isn't defined"
+            },
+            "met_format": "arl",
+            "strategy": "*required* if 'wait' section is defined",
+            "max_attempts": "*required* if 'wait' section is defined  -- max number of attempts",
+            "arl": {
+                "index_filename_pattern": "defaults to 'arl12hrindex.csv'",
+                "max_days_out": 4,
+                "accepted_forecasts": ["20190725", "2019072600", "2019072700"]
+            }
+        },
+        "localmet": {
+            "time_step": 1,
+            "skip_failures": true,
+            "working_dir": "default is to create a temp dir; directory to contain profile executable's input and output files",
+            "delete_working_dir_if_no_error": true
+        },
+        "timeprofile": {
+            "hourly_fractions": "custom hourly fractions (either 24-hour fractions or for the span of the activity window)",
+            "model": "default or ubc-bsf-feps",
+            "ubc-bsf-feps": {
+                "interpolation_type": 1,
+                "normalize": true,
+                "working_dir": "None",
+                "delete_working_dir_if_no_error": true
+            }
+        },
+        "plumerise": {
+            "model": "feps or sev",
+            "feps": {
+                "working_dir": "None",
+                "delete_working_dir_if_no_error": true,
+                "load_heat": false,
+                "feps_weather_binary": "feps_weather",
+                "feps_plumerise_binary": "feps_plumerise",
+                "plume_top_behavior": "'Briggs', 'FEPS', 'auto'; defaults to 'auto'"
+            },
+            "sev": {
+                "alpha": 0.24,
+                "beta": 170,
+                "ref_power": 1e6,
+                "gamma": 0.35,
+                "delta": 0.6,
+                "ref_n": 2.5e-4,
+                "gravity": 9.8,
+                "plume_bottom_over_top": 0.5
+            }
+        },
+        "extrafiles": {
+            "dest_dir": "where to write extra files",
+            "sets": ["(though nothing happens if not defined) -- array of file sets to write"],
+            "emissionscsv": "emission csv file name",
+            "firescsvs": {
+                "fire_locations_filename": "fire_locations.csv",
+                "fire_events_filename": "fire_events.csv"
+            }
+        },
+        "trajectories": {
+            "model": "hysplit",
+            "start": "required a start hour",
+            "num_hours": 24,
+            "output_dir": "*required* -- where output json and geojson files will be written",
+            "working_dir": "*optional* -- default is to create a temp dir",
+            "delete_working_dir_if_no_error": true,
+            "handle_existing": "fail",
+            "hysplit": {
+                "binary": "hyts_std",
+                "start_hours": [0],
+                "heights": [10, 100, 1000],
+                "vertical_motion": 0,
+                "top_of_model_domain": 10000,
+                "output_file_name": "tdump",
+                "setup_file_params": {
+                    "tm_tpot": 1,
+                    "tm_tamb": 1,
+                    "tm_rain": 1,
+                    "tm_mixed": 1,
+                    "tm_relh": 1,
+                    "tm_dswf": 1,
+                    "tm_terr": 0,
+                    "kmsl": 0
+                },
+                "static_files": {
+                    "ASCDATA_FILE": "default files included in bluesky package",
+                    "LANDUSE_FILE": "default files included in bluesky package",
+                    "ROUGLEN_FILE": "default files included in bluesky package",
+                    "TERRAIN_FILE": "default files included in bluesky package"
+                }
+            }
+        },
+        "dispersion": {
+            "start": "*required* (unless it can be determined from fire activity windows) -- modeling start time (ex. '2015-01-21T00:00:00Z'); 'today' is also recognized, in which case start is set to midnight of the current utc date",
+            "num_hours": "*required* (unless it can be determined from fire activity windows) -- number of hours in model run",
+            "output_dir": "*required* -- directory to contain output",
+            "working_dir": "*required* -- directory to contain working output",
+            "delete_working_dir_if_no_error": true,
+            "model": "hysplit",
+            "handle_existing": "how to handle case where output dir already exists; options: 'replace', 'write_in_place', 'fail'; defaults to 'fail'",
+            "plume_merge": {
+                "grid": {
+                    "boundary": {
+                        "sw": {
+                            "lat": 32.7,
+                            "lng": -85.3
+                        },
+                        "ne": {
+                            "lat": 32.7,
+                            "lng": -85.3
+                        }
+                    }
+                }
+            },
+            "hysplit": {
+                "skip_invalid_fires": false,
+                "grid": {
+                    "projection": "LatLng",
+                    "boundary": {
+                        "sw": {
+                            "lat": 32.7,
+                            "lng": -85.3
+                        },
+                        "ne": {
+                            "lat": 32.7,
+                            "lng": -85.3
+                        }
+                    }
+                },
+                "COMPUTE_GRID": true,
+                "GRID_LENGTH": 1,
+                "CONVERT_HYSPLIT2NETCDF": true,
+                "output_file_name": "hysplit_conc.nc",
+                "archive_tranche_files": false,
+                "archive_pardump_file": false,
+                "DISPERSION_OFFSET": "number of hours to offset start of dispersion",
+                "ASCDATA_FILE": "use default file in package",
+                "CENTER_LATITUDE": "*required if USER_DEFINED_GRID==true* -- default: none",
+                "CENTER_LONGITUD": "*required if USER_DEFINED_GRID==true* -- default: none",
+                "DELT": 0.0,
+                "DISPERSION_FOLDER": "./input/dispersion",
+                "DRY_DEP_DIFFUSIVITY": 0.0,
+                "DRY_DEP_EFF_HENRY": 0.0,
+                "DRY_DEP_MOL_WEIGHT": 0.0,
+                "DRY_DEP_REACTIVITY": 0.0,
+                "DRY_DEP_VELOCITY": 0.0,
+                "FIRE_INTERVALS": [0, 100, 200, 500, 1000],
+                "HEIGHT_LATITUDE": "*required if USER_DEFINED_GRID==true* -- default: none",
+                "ICHEM": 0,
+                "INITD": 0,
+                "KHMAX": 72,
+                "LANDUSE_FILE": "*optional* -- default: use default file in package",
+                "MAKE_INIT_FILE": false,
+                "MAXPAR": 10000,
+                "MAX_SPACING_LONGITUDE": 0.5,
+                "MAX_SPACING_LATITUDE": 0.5,
+                "MGMIN": 10,
+                "MPI": false,
+                "NCPUS": 1,
+                "NCYCL": 0,
+                "NDUMP": 0,
+                "NFIRES_PER_PROCESS": -1,
+                "NINIT": 0,
+                "NPROCESSES": 1,
+                "NPROCESSES_MAX": -1,
+                "NUMPAR": 1000,
+                "OPTIMIZE_GRID_RESOLUTION": false,
+                "PARTICLE_DENSITY": 1.0,
+                "PARTICLE_DIAMETER": 1.0,
+                "PARTICLE_SHAPE": 1.0,
+                "PARINIT": "./input/dispersion/PARINIT",
+                "PARDUMP": "./input/dispersion/PARDUMP",
+                "QCYCLE": 1.0,
+                "RADIOACTIVE_HALF_LIVE": 0.0,
+                "ROUGLEN_FILE": "default: use default file in package",
+                "SAMPLING_INTERVAL_HOUR": 1,
+                "SAMPLING_INTERVAL_MIN": 0,
+                "SAMPLING_INTERVAL_TYPE": 0,
+                "SMOLDER_HEIGHT": 10.0,
+                "SPACING_LATITUDE": "*required* if either COMPUTE_GRID or USER_DEFINED_GRID is true",
+                "SPACING_LONGITUDE": "*required* if either COMPUTE_GRID or USER_DEFINED_GRID is true",
+                "STOP_IF_NO_PARINIT": true,
+                "TOP_OF_MODEL_DOMAIN": 30000.0,
+                "TRATIO": 0.75,
+                "USER_DEFINED_GRID": "*required* to be set to true if grid is not defined in met data or in 'grid' settings, and it's not being computed -- default: False",
+                "VERTICAL_EMISLEVELS_REDUCTION_FACTOR": 1,
+                "SUBHOUR_EMISSIONS_REDUCTION_INTERVAL": "Factor for subhour emissions interval - e.g. 1 (hourly - default), 2 (30 min), etc.; default: 1",
+                "VERTICAL_LEVELS": [100],
+                "VERTICAL_METHOD": "DATA",
+                "WET_DEP_ACTUAL_HENRY": 0.0,
+                "WET_DEP_BELOW_CLOUD_SCAV": 0.0,
+                "WET_DEP_IN_CLOUD_SCAV": 0.0,
+                "WIDTH_LONGITUDE": "-- *required if USER_DEFINED_GRID==true* -- default: none"
+            },
+            "vsmoke": {
+                "TEMP_FIRE": "temperature of fire (F), default: 59.0",
+                "PRES": 1013.25,
+                "IRHA": 25,
+                "LTOFDY": true,
+                "STABILITY": 4,
+                "MIX_HT": 1500.0,
+                "OYINTA": 0.0,
+                "OZINTA": 0.0,
+                "BKGPMA": 0.0,
+                "BKGCOA": 0.0,
+                "THOT": 4.0,
+                "TCONST": 4,
+                "TDECAY": 2,
+                "EFPM": 30,
+                "EFCO": 250,
+                "ICOVER": 0,
+                "CEIL": 99999,
+                "CC0CRT": 0.02,
+                "VISCRT": 0.125,
+                "GRAD_RISE": true,
+                "RFRC": -0.75,
+                "EMTQR": -0.75,
+                "KMZ_FILE": "smoke_dispersion.kmz",
+                "OVERLAY_TITLE": "Peak Hourly PM2.5",
+                "LEGEND_IMAGE": "aqi_legend.png",
+                "JSON_FILE": "smoke_dispersion.json",
+                "CREATE_JSON": true,
+                "DUTMFE": 0,
+                "DUTMFN": 100,
+                "XBGN": 150,
+                "XEND": 200,
+                "XNTVL": 0.05,
+                "TOL": 0.1
+            }
+        }
+    }
+}

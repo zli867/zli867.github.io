@@ -1,0 +1,14 @@
+{
+    "config": {
+        "emissions": {
+            "species": ["PM2.5"]
+        },
+        "dispersion": {
+            "start": "2014-08-29T00:00:00",
+            "num_hours": 24,
+            "model": "vsmoke",
+            "output_dir": "/bluesky-output/dispersion-output/{run_id}/",
+            "working_dir": "/bluesky-output/dispersion-working/{run_id}/"
+        }
+    }
+}

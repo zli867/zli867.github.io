@@ -15,3 +15,35 @@
     vertical-align: middle;
     /* Align icon with the text */
 }
+
+.img-responsive {
+    height: 45%;
+    text-align: center;
+    margin: auto;
+}
+
+.main-text {
+    font-size: 16px;
+}
+
+.project-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.image {
+    object-fit: cover;
+    display: inline;
+    /* This property ensures the image maintains its aspect ratio and covers the entire container */
+}
+
+.conference-title {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+
+/* .conference-title ul {
+    list-style-type: none;
+} */
