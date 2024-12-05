@@ -1,0 +1,74 @@
+.image {
+    object-fit: contain; /* Preserve aspect ratio and fit within container */
+    max-width: 100%; /* Ensure the image doesn't exceed the div's width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Center the image */
+    margin: 0 auto; /* Remove extra margins */
+}
+
+.center-container {
+    text-align: center;
+    padding: 10px; /* Add some consistent padding */
+}
+
+.Stewart {
+    display: none;
+}
+
+.singleSide {
+    display: block; /* Full width of the container */
+    margin: 0 auto;
+    width: 100%; /* Adjust width as necessary */
+}
+
+.sideByside {
+    display: inline-block;
+    margin: 5px; /* Reduce gaps between side-by-side elements */
+    width: 45%; /* Scale side-by-side elements proportionally */
+    vertical-align: top; /* Align top for consistent layout */
+}
+
+.flex {
+    display: flex;
+}
+
+#main-content {
+    display: none;
+}
+
+.header {
+    background-color: 'blue';
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo-container {
+    display: flex;
+    gap: 150px;
+}
+
+.logo {
+    height: 150px;
+    object-fit: contain;
+}
+
+#monitor_conc {
+    display: flex; /* Use Flexbox for better control */
+    justify-content: center; /* Center the content */
+    align-items: center; /* Vertically align the image */
+    margin: 0 auto; /* Center the div itself */
+    width: 100%; /* Full width of the container */
+    height: auto; /* Automatically scale height */
+    overflow: hidden; /* Prevent overflow from large images */
+    padding: 10px; /* Minimal padding */
+}
+
+#monitor_conc img {
+    max-width: 50%; /* Scale to 50% */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure the image is centered */
+    margin: 0 auto; /* Center within the container */
+}
