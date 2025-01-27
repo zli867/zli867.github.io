@@ -40,6 +40,7 @@ function showSelectedDate() {
     update_figure("fuel_consumption", "../Consumption/Fuel/consumption_" + selectedDate + ".png", "fuel_consumption_fig", 100)
     update_figure("emis_int", "../Emissions/Emission_" + selectedDate + ".png", "emis_int_fig", 100)
     update_figure("conc", "../SpatialConcentration/conc_" + selectedDate + ".gif", "conc_fig", 100)
+    update_figure("3Dconc", "../3DConcentration/3D_" + selectedDate + ".gif", "3D_fig", 90)
     update_figure("monitor_eval", "../Evaluations/conc_" + selectedDate + ".png", "monitor_eval_fig", 100)
 }
 
