@@ -18,7 +18,7 @@ function showSelectedDate() {
         }
     }
     update_figure("monitor_loc", "../Monitor/Monitor_" + selectedDate + ".png", "monitor_fig", 40)
-    update_figure("monitor_conc", "../Observation/obs_conc_" + selectedDate + ".png", "conc_fig", 40)
+    update_figure("monitor_conc", "../Observation/obs_conc_" + selectedDate + ".png", "conc_fig", 100)
     if (isFortStewart) {
         var elements = document.getElementsByClassName("Stewart");
         for (var i = 0; i < elements.length; i++) {
@@ -32,9 +32,8 @@ function showSelectedDate() {
         }
     }
     update_figure("sfire_ig", "../SFIREIgnitions/SFIRE_ignition_" + selectedDate + ".png", "sfire_ig_fig", 60)
-    update_figure("wrf_series", "../Met/series/Wind_Series_" + selectedDate + ".png", "wrf_series_fig", 60)
-    update_figure("dirbias", "../Met/wddirbias/winddir_bias_" + selectedDate + ".png", "dirbias_fig", 100)
-    update_figure("spdbias", "../Met/wdspdbias/windspd_bias_" + selectedDate + ".png", "spdbias_fig", 100)
+    update_figure("wrf_series", "../Met/series/Wind_Series_" + selectedDate + ".png", "wrf_series_fig", 100)
+    update_figure("wrf_bias", "../Met/bias/wind_bias_" + selectedDate + ".png", "dirbias_fig", 100)
     update_figure("bsp_fuel", "../FuelType/BSP/BSP_" + selectedDate + ".png", "bsp_fuel_fig", 100)
     update_figure("sfire_fuel", "../FuelType/SFIRE/SFIRE_fuel_" + selectedDate + ".png", "sfire_fuel_fig", 100)
     update_figure("fuel_consumption", "../Consumption/Fuel/consumption_" + selectedDate + ".png", "fuel_consumption_fig", 100)
