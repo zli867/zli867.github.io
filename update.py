@@ -53,7 +53,7 @@ def generate_html_text(cite_name, image_name, pdf_name, match_name="Zongrun Li")
             html_text += ", "
 
     html_text += """
-        <em>%s</em>, 2023, DOI: <a href="%s">%s</a>
+        <em>%s</em>, %s, DOI: <a href="%s">%s</a>
         <br>
         <br>
         <div>
@@ -64,7 +64,7 @@ def generate_html_text(cite_name, image_name, pdf_name, match_name="Zongrun Li")
         <br>
         <br>
     </li>
-    """% (article_obj["journal"], article_obj["doi"], article_obj["doi"], image_name, cite_name, pdf_name)
+    """% (article_obj["journal"], article_obj["year"], article_obj["doi"], article_obj["doi"], image_name, cite_name, pdf_name)
     soup = bs(html_text)
     html_text = soup.prettify()   
     return html_text
