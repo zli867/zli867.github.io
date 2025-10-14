@@ -1,0 +1,35 @@
+
+body {
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+#map {
+  flex: 1;
+  min-width: 200px;
+}
+
+#resizer {
+  width: 8px;
+  background: #ddd;
+  cursor: col-resize;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+#resizer:hover {
+  background: #aaa;
+}
+
+/* Sidebar default styles */
+#sidebar {
+  width: 50%;           /* Default: 50% of window width */
+  min-width: 10%;       /* Minimum: 10% of window width */
+  max-width: 80%;       /* Maximum: 80% of window width */
+  background: #f7f7f7;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
