@@ -6,6 +6,20 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+// Study area
+fetch('./study_area.geojson')
+  .then(res => res.json())
+  .then(data => {
+    const studyBoundary = L.geoJSON(data, {
+      style: {
+        color: '#0066cc',  
+        weight: 2,
+        fill: false,        
+        opacity: 0.9
+      }
+    }).addTo(map);
+    map.fitBounds(studyBoundary.getBounds());
+  });
 // Site data
 var locations = {
   'Azusa': [-117.923897, 34.136398],
