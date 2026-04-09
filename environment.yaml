@@ -1,0 +1,14 @@
+name: homepage
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12.3
+  - numpy=2.4.3
+  - requests=2.33.0
+  - pip
+  - pip:
+      - pybtex==0.26.1
+      - beautifulsoup4==4.14.3
+      - scholarly==1.7.11
+      - bibtexparser==1.4.4
