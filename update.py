@@ -24,49 +24,51 @@ def article_info(cite_name):
             author_info = [author.first_names, author.middle_names, author.last_names]
             for i in author_info:
                 if len(i) > 0:
-                    author_names.append(i[0])
+                    author_names.append(" ".join(i))
             author_name = " ".join(author_names)
             author_list.append(author_name)
         article_obj["authors"] = author_list
     return article_obj
 
 
-# article_info("/Users/zongrunli/Desktop/HomePage/zli867.github.io/publications/1/S1352231022000966.bib")
-def generate_html_text(cite_name, image_name, pdf_name, match_name="Zongrun Li"):
+def generate_html_text(cite_name, image_name, pdf_name, folder_number, match_name="Zongrun Li"):
     article_obj = article_info(cite_name)
-    html_text = """
-                    <li>
-                        <div class="project-title">
-                            %s
-                        </div>
-                        <br>
-                """ % article_obj["title"]
-    
-    for i in range(0, len(article_obj["authors"])):
-        author = article_obj["authors"][i]
-        if author == match_name:
-            html_text += "<strong>" + match_name + "</strong>"
-        else:
-            html_text += author
-        
-        if i != len(article_obj["authors"]) - 1:
-            html_text += ", "
+    year = article_obj["year"]
 
-    html_text += """
-        <em>%s</em>, %s, DOI: <a href="%s">%s</a>
-        <br>
-        <br>
-        <div>
-            <img src=%s width="100%%">
-        </div>
-        <i class="fas fa-quote-left"></i> <a href="%s"> Cite </a> /
-        <i class="fas fa-file-pdf\"></i><a href="%s"> PDF</a>
-        <br>
-        <br>
-    </li>
-    """% (article_obj["journal"], article_obj["year"], article_obj["doi"], article_obj["doi"], image_name, cite_name, pdf_name)
-    soup = bs(html_text)
-    html_text = soup.prettify()   
+    # Build author string with highlighting
+    author_parts = []
+    for i, author in enumerate(article_obj["authors"]):
+        if author == match_name:
+            author_parts.append("<strong>%s</strong>" % match_name)
+        else:
+            author_parts.append(author)
+    authors_str = ", ".join(author_parts)
+
+    html_text = """
+                    <li class="pub-item" data-order="%s" data-year="%s">
+                        <div class="pub-thumb"><img src="%s" alt="graphic abstract"/></div>
+                        <div class="pub-body">
+                            <div class="project-title">%s<span class="pub-year-badge">%s</span></div>
+                            <div class="pub-authors">%s</div>
+                            <div class="pub-venue"><em>%s</em>, %s, DOI: <a href="%s">%s</a></div>
+                            <div class="pub-links"><i class="fas fa-quote-left"></i> <a href="%s">Cite</a> / <i class="fas fa-file-pdf"></i> <a href="%s">PDF</a></div>
+                        </div>
+                    </li>
+    """ % (
+        folder_number,
+        year,
+        image_name,
+        article_obj["title"],
+        year,
+        authors_str,
+        article_obj["journal"],
+        year,
+        article_obj["doi"],
+        article_obj["doi"],
+        cite_name,
+        pdf_name,
+    )
+
     return html_text
 
 
@@ -90,8 +92,9 @@ search_order = [i[0] for i in sorted(enumerate(sub_folders), key=lambda x:x[1], 
 html_text = ""
 for i in range(0, len(search_order)):
     cur_path = sub_paths[search_order[i]]
+    folder_number = sub_folders[search_order[i]]
     cite_name, image_name, pdf_name = get_filenames(cur_path)
-    html_text += generate_html_text(cite_name, image_name, pdf_name)
+    html_text += generate_html_text(cite_name, image_name, pdf_name, folder_number)
 
 with open("index_template.html", "r", encoding="utf-8") as f:
     template_html = f.read()

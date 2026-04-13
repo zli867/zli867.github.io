@@ -72,11 +72,11 @@
                 <!-- Main Image -->
                 <img class="img-responsive" src="photo.jpg" alt=""><br>
                 <div class="main-text" style="margin-top:3%; text-align:justify;">
-                    Hello, I am Zongrun Li. I am presently working as a Research Scientist in the Mechanical Engineering Department at Colorado State University, under the supervision of Dr. John Volckens. I received my PhD from Georgia Tech in <a
-                        href="https://russellgroup.ce.gatech.edu/">LAMDA(λ) : Laboratory for Atmospheric Modeling,
-                        Diagnostics and Analysis</a> advised by <a href="https://odman.ce.gatech.edu/">M. Talat
-                        Odman</a> and <a href="https://ce.gatech.edu/directory/person/armistead-g-russell">Ted
-                        Russell.</a> My research topics including:
+                    Hello, I am Zongrun Li. I am presently working as a Research Scientist in the Mechanical Engineering Department at Colorado State University, 
+                    under the supervision of <a href="https://www.engr.colostate.edu/me/faculty/dr-john-volckens/">Dr. John Volckens</a>. 
+                    I received my PhD from Georgia Tech in <a href="https://russellgroup.ce.gatech.edu/">LAMDA(λ): Laboratory for Atmospheric Modeling,
+                        Diagnostics and Analysis</a> advised by <a href="https://odman.ce.gatech.edu/">Dr. M. Talat
+                        Odman</a> and <a href="https://ce.gatech.edu/directory/person/armistead-g-russell">Dr. Ted Russell</a>. My research topics include:
                     <ul>
                         <li>Coupling fire-behavior model with chemical transport model.</li>
                         <li>Estimation of prescribed fire emissions from remote sensing datasets.</li>
@@ -91,9 +91,9 @@
             <!-- Contact Info on the Sidebar -->
             <div class="col-md-4">
                 <div style="font-family: 'Oswald', sans-serif; font-size: 32px;"><b>Zongrun Li</b></div><br>
-                <p><b>zli867 at gatech.edu</b><br>
-                <p>Georgia Tech
-                    <br> Atlanta <br>
+                <p><b>zongrun.li at colostate.edu</b><br>
+                <p>Colorado State University
+                    <br> Fort Collins <br>
                     <br>
                 </p>
             </div>
@@ -124,9 +124,44 @@
                         HREF="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=naqwNJ0AAAAJ">Google
                         Scholar</a> </p>
 
-                <ol reversed class="vert">
+                <div class="pub-controls">
+                    <span class="pub-label">Sort by:</span>
+                    <button type="button" class="pub-sort-btn active" data-sort="desc">Newest first</button>
+                    <button type="button" class="pub-sort-btn" data-sort="asc">Oldest first</button>
+                </div>
+
+                <ul class="pub-list" id="pub-list">
                     UPDATE_FIELD_PUBLICATION
-                </ol>
+                </ul>
+
+                <script>
+                (function() {
+                    var list = document.getElementById('pub-list');
+                    var btns = document.querySelectorAll('.pub-sort-btn');
+                    function sortPubs(order) {
+                        var items = Array.prototype.slice.call(list.querySelectorAll('.pub-item'));
+                        items.sort(function(a, b) {
+                            var ya = parseInt(a.getAttribute('data-year'), 10);
+                            var yb = parseInt(b.getAttribute('data-year'), 10);
+                            if (ya !== yb) {
+                                return order === 'asc' ? ya - yb : yb - ya;
+                            }
+                            var oa = parseInt(a.getAttribute('data-order'), 10) || 0;
+                            var ob = parseInt(b.getAttribute('data-order'), 10) || 0;
+                            return order === 'asc' ? oa - ob : ob - oa;
+                        });
+                        items.forEach(function(it) { list.appendChild(it); });
+                    }
+                    btns.forEach(function(btn) {
+                        btn.addEventListener('click', function() {
+                            btns.forEach(function(b) { b.classList.remove('active'); });
+                            btn.classList.add('active');
+                            sortPubs(btn.getAttribute('data-sort'));
+                        });
+                    });
+                    sortPubs('desc');
+                })();
+                </script>
 
             </div>
 
