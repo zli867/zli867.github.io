@@ -102,7 +102,8 @@ function updateSidebar(site, coord) {
     trajCMAQ: `./Figures/Traj_CMAQ/${site}_compare_CMAQ_traj.png`,
     dataWithholding: `./Figures/Data Withholding/${site}_data_withholding.png`,
     trajEmp: `./Figures/Traj_Emp/${site}_compare_traj.png`,
-    Comparisons: `./Figures/Compare Quadratic Emp/${site}_compare_quadratic_emp.png`
+    Comparisons: `./Figures/Compare Quadratic Emp/${site}_compare_quadratic_emp.png`,
+    Cubic: `./Figures/cubic/${site}_cubic.png`
   };
 
   // Build HTML string
@@ -156,6 +157,15 @@ function updateSidebar(site, coord) {
            loading="lazy" 
            onerror="this.style.display='none'">
       <figcaption style="text-align:center;">The comparison of observed ozone with CMAQ-HDDM- and observation-derived model estimates along emission levels from 1985 to 2019 (first row). Comparisons between HDDM-derived and observation-derived sensitivity trends along emission levels from 1985 to 2019 (second row). The color indicates the year of the points. The dashed line indicated the 1:1 reference line.</figcaption>
+    </figure>
+
+    <h3>Cubic Model</h3>
+    <figure>
+      <img src="${figures.Cubic}" 
+           style="width:100%; margin-top:10px; border:1px solid #ccc; border-radius:6px;" 
+           loading="lazy" 
+           onerror="this.style.display='none'">
+      <figcaption style="text-align:center;">Mean bias (left panel) and standard deviation of bias (right panel) of CMAQ-HDDM-based isopleths derived by the cubic model. The white crosses indicate the 15 emission levels used in the isopleth development.</figcaption>
     </figure>
   `;
 
