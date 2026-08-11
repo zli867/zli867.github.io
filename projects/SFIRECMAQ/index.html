@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prescribed Fire Simulation Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="logos" aria-label="Project partners">
+        <img src="assets/georgia-tech.png" alt="Georgia Tech" />
+        <img src="assets/usfs.png" alt="US Forest Service" />
+        <img src="assets/serdp.jpg" alt="SERDP" />
+      </div>
+    </header>
+
+    <section class="intro">
+      <h1>From Inert Tracers to Reactive Smoke</h1>
+      <p>Compare modeled surface concentrations and smoke-related air-quality impacts across coupling approaches.</p>
+    </section>
+
+    <nav class="dates" aria-label="Select event date">
+      <button class="date" type="button" data-date="20 Mar 2021" aria-selected="false"><span class="date-year">2021</span><span class="date-day">Mar 20</span></button>
+      <button class="date" type="button" data-date="22 Mar 2021" aria-selected="false"><span class="date-year">2021</span><span class="date-day">Mar 22</span></button>
+      <button class="date" type="button" data-date="07 Apr 2021" aria-selected="true"><span class="date-year">2021</span><span class="date-day">Apr 07</span></button>
+      <button class="date" type="button" data-date="20 Apr 2021" aria-selected="false"><span class="date-year">2021</span><span class="date-day">Apr 20</span></button>
+      <button class="date" type="button" data-date="25 Apr 2022" aria-selected="false"><span class="date-year">2022</span><span class="date-day">Apr 25</span></button>
+    </nav>
+
+    <section class="content">
+      <aside>
+        <p class="eyebrow">SELECTED EVENT</p>
+        <h2>07 Apr 2021</h2>
+        <p class="caption" id="caption">Surface PM<sub>2.5</sub> concentration. The four panels compare simulated PM<sub>2.5</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-FOAM-CMAQ, and SFIRE-CMAQ. Colors show surface PM<sub>2.5</sub> (µg m<sup>−3</sup>), and arrows indicate surface wind direction and speed. The blue circle, green triangle, and red diamond mark the trailer, USFS1032, and USFS1033 sites, respectively. Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.</p>
+      </aside>
+      <figure>
+        <div class="figure-top">
+          <nav class="views" aria-label="Select air quality species">
+            <button class="view" type="button" data-view="pm" aria-selected="true">PM<sub>2.5</sub></button>
+            <button class="view" type="button" data-view="o3" aria-selected="false">O<sub>3</sub></button>
+            <button class="view" type="button" data-view="dpm" aria-selected="false">Δ PM<sub>2.5</sub></button>
+            <button class="view" type="button" data-view="do3" aria-selected="false">Δ O<sub>3</sub></button>
+          </nav>
+          <div class="live"><span class="dot"></span><span id="figure-title">PM<sub>2.5</sub> · Spatial comparison</span><span id="event-date">07 Apr 2021</span></div>
+        </div>
+        <div class="figure-image">
+          <img id="figure-image" src="assets/pm25_2x2_absolute_20210407.gif" alt="Surface PM 2.5 spatial comparison for 07 Apr 2021" />
+        </div>
+        <figcaption><span id="figure-foot">PM<sub>2.5</sub> · absolute near-surface concentration</span><span>Animation loops continuously</span></figcaption>
+      </figure>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
