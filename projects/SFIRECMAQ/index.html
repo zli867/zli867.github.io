@@ -16,9 +16,46 @@
       </div>
     </header>
 
+    <nav class="page-nav" aria-label="Presentation pages">
+      <button class="page-tab" type="button" data-page="concept" aria-selected="true">1 · Coupling concept</button>
+      <button class="page-tab" type="button" data-page="f0am" aria-selected="false">2 · F0AM workflow</button>
+      <button class="page-tab" type="button" data-page="spatial" aria-selected="false">3 · Spatial figures</button>
+    </nav>
+
+    <section class="screen concept-screen" id="concept-page">
+      <section class="intro">
+        <h1>From Inert Tracers to Reactive Smoke</h1>
+        <p>The offline coupling algorithm perserves plume dynamics from WRF-SFIRE simulated inert tracers while providing chemistry reactions.</p>
+      </section>
+      <div class="concept-grid">
+        <figure class="light-figure">
+          <img src="assets/conceptual-coupling.png" alt="Conceptual diagram of CMAQ, the fire plume, ambient air, and WRF-SFIRE" />
+          <figcaption>Conceptual coupling between the fire behavior and chemical transport model.</figcaption>
+        </figure>
+        <figure class="light-figure">
+          <img src="assets/coupling-workflow.png" alt="Workflow from WRF-SFIRE smoke tracer fields to the CMAQ coupling surface" />
+          <figcaption>Coupling workflow</figcaption>
+        </figure>
+      </div>
+      <button class="next-page" type="button" data-go-to="f0am">Next: F0AM simulation workflow <span>→</span></button>
+    </section>
+
+    <section class="screen f0am-screen" id="f0am-page">
+      <section class="intro">
+        <h1>F0AM simulation workflow</h1>
+        <p>F0AM advances the plume representation through the coupled simulation and provides the evolving information needed within coupling regions.</p>
+      </section>
+      <figure class="f0am-figure">
+        <img src="assets/f0am-simulation-workflow.png" alt="F0AM simulation workflow with plume movement, vertical exchange, and coupling flux" />
+        <figcaption>F0AM simulation workflow.</figcaption>
+      </figure>
+      <button class="next-page" type="button" data-go-to="spatial">View spatial figures <span>→</span></button>
+    </section>
+
+    <section class="screen spatial-screen" id="spatial-page">
     <section class="intro">
-      <h1>From Inert Tracers to Reactive Smoke</h1>
-      <p>Compare modeled surface concentrations and smoke-related air-quality impacts across coupling approaches.</p>
+      <h1>Spatial Comparison of Different Coupling Methods</h1>
+      <p>Compare modeled surface concentrations and smoke-related air quality impacts across coupling methods.</p>
     </section>
 
     <nav class="dates" aria-label="Select event date">
@@ -33,7 +70,7 @@
       <aside>
         <p class="eyebrow">SELECTED EVENT</p>
         <h2>07 Apr 2021</h2>
-        <p class="caption" id="caption">Surface PM<sub>2.5</sub> concentration. The four panels compare simulated PM<sub>2.5</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-FOAM-CMAQ, and SFIRE-CMAQ. Colors show surface PM<sub>2.5</sub> (µg m<sup>−3</sup>), and arrows indicate surface wind direction and speed. The blue circle, green triangle, and red diamond mark the trailer, USFS1032, and USFS1033 sites, respectively. Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.</p>
+        <p class="caption" id="caption">Surface PM<sub>2.5</sub> concentration. The four panels compare simulated PM<sub>2.5</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-F0AM-CMAQ, and SFIRE-CMAQ. Colors show surface PM<sub>2.5</sub> (µg m<sup>−3</sup>), and arrows indicate surface wind direction and speed. The blue circle, green triangle, and red diamond mark the trailer, USFS1032, and USFS1033 sites, respectively. Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.</p>
       </aside>
       <figure>
         <div class="figure-top">
@@ -50,6 +87,7 @@
         </div>
         <figcaption><span id="figure-foot">PM<sub>2.5</sub> · absolute near-surface concentration</span><span>Animation loops continuously</span></figcaption>
       </figure>
+    </section>
     </section>
   </main>
   <script src="script.js"></script>

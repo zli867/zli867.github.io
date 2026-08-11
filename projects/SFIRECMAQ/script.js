@@ -1,22 +1,22 @@
 const content = {
   pm: {
     title: 'PM<sub>2.5</sub> · Spatial comparison',
-    caption: 'Surface PM<sub>2.5</sub> concentration. The four panels compare simulated PM<sub>2.5</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-FOAM-CMAQ, and SFIRE-CMAQ. Colors show surface PM<sub>2.5</sub> (µg m<sup>−3</sup>), and arrows indicate surface wind direction and speed. {sites} Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.',
+    caption: 'Surface PM<sub>2.5</sub> concentration. The four panels compare simulated PM<sub>2.5</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-F0AM-CMAQ, and SFIRE-CMAQ. Colors show surface PM<sub>2.5</sub> (µg m<sup>−3</sup>), and arrows indicate surface wind direction and speed. {sites} Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.',
     foot: 'PM<sub>2.5</sub> · absolute near-surface concentration'
   },
   o3: {
     title: 'O<sub>3</sub> · Spatial comparison',
-    caption: 'Surface O<sub>3</sub> concentration. The four panels compare simulated O<sub>3</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-FOAM-CMAQ, and SFIRE-CMAQ. Colors show surface O<sub>3</sub> (ppb), and arrows indicate surface wind direction and speed. {sites} Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.',
+    caption: 'Surface O<sub>3</sub> concentration. The four panels compare simulated O<sub>3</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-F0AM-CMAQ, and SFIRE-CMAQ. Colors show surface O<sub>3</sub> (ppb), and arrows indicate surface wind direction and speed. {sites} Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.',
     foot: 'O<sub>3</sub> · absolute near-surface concentration'
   },
   dpm: {
     title: 'Δ PM<sub>2.5</sub> · Spatial comparison',
-    caption: 'Surface ΔPM<sub>2.5</sub> concentration (fire − background). The four panels compare simulated ΔPM<sub>2.5</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-FOAM-CMAQ, and SFIRE-CMAQ. Colors show surface ΔPM<sub>2.5</sub> (µg m<sup>−3</sup>), and arrows indicate surface wind direction and speed. {sites} Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.',
+    caption: 'Surface ΔPM<sub>2.5</sub> concentration (fire − background). The four panels compare simulated ΔPM<sub>2.5</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-F0AM-CMAQ, and SFIRE-CMAQ. Colors show surface ΔPM<sub>2.5</sub> (µg m<sup>−3</sup>), and arrows indicate surface wind direction and speed. {sites} Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.',
     foot: 'PM<sub>2.5</sub> impacts from prescribed-fire smoke'
   },
   do3: {
     title: 'Δ O<sub>3</sub> · Spatial comparison',
-    caption: 'Surface ΔO<sub>3</sub> concentration (fire − background). The four panels compare simulated ΔO<sub>3</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-FOAM-CMAQ, and SFIRE-CMAQ. Colors show surface ΔO<sub>3</sub> (ppb), and arrows indicate surface wind direction and speed. {sites} Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.',
+    caption: 'Surface ΔO<sub>3</sub> concentration (fire − background). The four panels compare simulated ΔO<sub>3</sub> across Freitas-SFIRE-CMAQ, WRF-SFIRE-Chem, SFIRE-F0AM-CMAQ, and SFIRE-CMAQ. Colors show surface ΔO<sub>3</sub> (ppb), and arrows indicate surface wind direction and speed. {sites} Black lines delineate the Fort Benning boundary and the prescribed-fire burn-unit boundary.',
     foot: 'O<sub>3</sub> impacts from prescribed-fire smoke'
   }
 };
@@ -64,3 +64,33 @@ document.querySelectorAll('.date').forEach(button => button.addEventListener('cl
   document.getElementById('event-date').textContent = selectedDate;
   renderContent();
 }));
+
+function showPage(page) {
+  document.querySelectorAll('.page-tab').forEach(tab => {
+    tab.setAttribute('aria-selected', tab.dataset.page === page);
+  });
+  document.getElementById(`${page}-page`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.querySelectorAll('.page-tab').forEach(button => button.addEventListener('click', () => {
+  showPage(button.dataset.page);
+}));
+
+document.querySelectorAll('[data-go-to]').forEach(button => button.addEventListener('click', () => {
+  showPage(button.dataset.goTo);
+}));
+
+const pageObserver = new IntersectionObserver(entries => {
+  const visiblePage = entries
+    .filter(entry => entry.isIntersecting)
+    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+  if (visiblePage) {
+    const page = visiblePage.target.id.replace('-page', '');
+    document.querySelectorAll('.page-tab').forEach(tab => {
+      tab.setAttribute('aria-selected', tab.dataset.page === page);
+    });
+  }
+}, { threshold: 0.35 });
+
+document.querySelectorAll('.screen').forEach(screen => pageObserver.observe(screen));
